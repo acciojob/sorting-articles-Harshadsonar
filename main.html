@@ -1,16 +1,63 @@
 <!DOCTYPE html>
-
 <html>
-
 <head>
-	<link rel="stylesheet" href="styles.css">
+  <style>
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    
+    li {
+      margin-bottom: 5px;
+      font-size: 16px;
+    }
+  </style>
 </head>
-
 <body>
-	<!-- the entire body must be written by student -->
-    <script type="text/javascript" src="./script.js">
-</script>
+  <ul id="band"></ul>
 
+  <script>
+    const bands = [
+      'The Plot in You',
+      'The Devil Wears Prada',
+      'Pierce the Veil',
+      'Norma Jean',
+      'The Bled',
+      'Say Anything',
+      'The Midway State',
+      'We Came as Romans',
+      'Counterparts',
+      'Oh, Sleeper',
+      'A Skylit Drive',
+      'Anywhere But Here',
+      'An Old Dog'
+    ];
+
+    const ignoredWords = ['a', 'an', 'the'];
+
+    // Function to sort the bands array while ignoring certain words
+    function sortBands(bands) {
+      return bands.sort((a, b) => {
+        const wordA = a.replace(/^(a|an|the)\s+/i, '');
+        const wordB = b.replace(/^(a|an|the)\s+/i, '');
+        return wordA.localeCompare(wordB);
+      });
+    }
+
+    // Generate the HTML list of sorted articles
+    function generateArticleList() {
+      const bandList = document.getElementById('band');
+      const sortedBands = sortBands(bands);
+      
+      sortedBands.forEach((band) => {
+        const listItem = document.createElement('li');
+        listItem.textContent = band;
+        bandList.appendChild(listItem);
+      });
+    }
+
+    // Call the function to generate the article list
+    generateArticleList();
+  </script>
 </body>
-
 </html>
