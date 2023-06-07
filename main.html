@@ -38,10 +38,17 @@
     // Function to sort the bands array while ignoring certain words
     function sortBands(bands) {
       return bands.sort((a, b) => {
-        const wordA = a.replace(/^(a|an|the)\s+/i, '');
-        const wordB = b.replace(/^(a|an|the)\s+/i, '');
+        const wordA = ignoreWords(a);
+        const wordB = ignoreWords(b);
         return wordA.localeCompare(wordB);
       });
+    }
+
+    // Function to ignore certain words in a band name
+    function ignoreWords(name) {
+      const words = name.split(' ');
+      const ignoredWordsFiltered = words.filter(word => !ignoredWords.includes(word.toLowerCase()));
+      return ignoredWordsFiltered.join(' ');
     }
 
     // Generate the HTML list of sorted articles
